@@ -2,9 +2,9 @@ server:
   port: 9091
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/my_database
-    username: admin
-    password: secret
+    url: jdbc:postgresql://localhost:5432/user_services
+    username: javaguide
+    password: javaguidepwd
     driver-class-name: org.postgresql.Driver
 
   jpa:

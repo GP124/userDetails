@@ -5,11 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "userLoginDetails")
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "userLoginDetails")
 public class UserEntity {
 
     @Id
