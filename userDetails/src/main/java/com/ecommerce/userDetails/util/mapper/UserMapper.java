@@ -5,7 +5,7 @@ import com.ecommerce.userDetails.entity.UserEntity;
 
 public class UserMapper {
     public static UserDto mapToUserDto(UserEntity userEntity){
-        return new UserDto(userEntity.getId(),
+        return new UserDto(userEntity.getUserId(),
                 userEntity.getUserName(),
                 userEntity.getPassword(),
                 userEntity.getEmail()
@@ -15,7 +15,7 @@ public class UserMapper {
     public static UserEntity mapToUserEntity(UserDto userDto)
     {
         return new UserEntity(
-                userDto.getId() != null ? userDto.getId() : 0L,
+                userDto.getUserId() != null ? userDto.getUserId() : 0L,
                 userDto.getUserName(),
                 userDto.getPassword(),
                 userDto.getEmail()
