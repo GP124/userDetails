@@ -16,9 +16,9 @@ public class UserMapper {
     {
         return new UserEntity(
                 null,
-                userRequestDto.getUserName(),
-                userRequestDto.getPassword(),
-                userRequestDto.getEmail()
+                userRequestDto.userName(),
+                userRequestDto.password(),
+                userRequestDto.email()
         );
     }
 }
