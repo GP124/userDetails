@@ -1,6 +1,7 @@
 package com.ecommerce.userDetails.service.impl;
 
 import com.ecommerce.userDetails.dto.UserDto;
+import com.ecommerce.userDetails.dto.UserRequestDto;
 import com.ecommerce.userDetails.entity.UserEntity;
 import com.ecommerce.userDetails.exception.ResourceNotFoundException;
 import com.ecommerce.userDetails.repository.UserRepository;
@@ -16,8 +17,8 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public UserDto createUser(UserDto userDto) {
-        UserEntity userEntity = UserMapper.mapToUserEntity(userDto);
+    public UserDto createUser(UserRequestDto userRequestDto) {
+        UserEntity userEntity = UserMapper.mapToUserEntity(userRequestDto);
         UserEntity savedUser = userRepository.save(userEntity);
         return UserMapper.mapToUserDto(savedUser);
     }

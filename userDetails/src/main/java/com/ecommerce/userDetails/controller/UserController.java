@@ -1,6 +1,7 @@
 package com.ecommerce.userDetails.controller;
 
 import com.ecommerce.userDetails.dto.UserDto;
+import com.ecommerce.userDetails.dto.UserRequestDto;
 import com.ecommerce.userDetails.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
-        UserDto savedUser = userService.createUser(userDto);
+    public ResponseEntity<UserDto> createUser(@RequestBody UserRequestDto userRequestDto) {
+        UserDto savedUser = userService.createUser(userRequestDto);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
