@@ -13,7 +13,6 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Service
-
 public class AuthService {
 
     @Autowired
@@ -25,20 +24,20 @@ public class AuthService {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
-    public String authenticateUser(LoginRequestDto loginRequestDto){
+    public String authenticateUser(LoginRequestDto loginRequestDto) {
         UserEntity userEntity;
         userEntity = userRepository.findByUserName(loginRequestDto.userName())
-                .orElseThrow(()-> new ResourceNotFoundException("User not Found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not Found"));
 
-        boolean isPasswordMatch = passwordEncoder.matches(loginRequestDto.password(),userEntity.getPassword());
-        if(!isPasswordMatch)
-        {
-                throw new ResourceNotFoundException("Invalid credentials");
+        boolean isPasswordMatch = passwordEncoder.matches(loginRequestDto.password(), userEntity.getPassword());
+        if (!isPasswordMatch) {
+            throw new ResourceNotFoundException("Invalid credentials");
         }
 
         String sessionToken = UUID.randomUUID().toString();
 
-        redisTemplate.opsForValue().set("SESSION_"+sessionToken,userEntity.getUserName(),30, TimeUnit.MINUTES);
+        redisTemplate.opsForValue().set("SESSION_" + sessionToken,
+                userEntity.getUserName(), 10, TimeUnit.SECONDS);
 
         return sessionToken;
 
