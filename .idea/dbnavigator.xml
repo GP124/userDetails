@@ -19,7 +19,7 @@
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
-    <show-object-properties value="true" />
+    <show-object-properties value="false" />
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
@@ -31,10 +31,7 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="a1406e2b-c1fe-4ee1-a2e4-5b1a821e9df2" object-ref="consoles/user_services" />
-      <object connection-id="a1406e2b-c1fe-4ee1-a2e4-5b1a821e9df2" object-ref="schemas/public/tables/user_login_details" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="a1406e2b-c1fe-4ee1-a2e4-5b1a821e9df2" />
