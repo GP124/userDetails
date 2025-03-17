@@ -9,4 +9,8 @@ scrape_configs:
 
   - job_name: "prometheus"
     static_configs:
-      - targets: ["localhost:9092"]
+      - targets: ["localhost:9090"]
+
+  - job_name: "kafka"
+    static_configs:
+      - targets: ["host.docker.internal:9999"]

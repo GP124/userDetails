@@ -21,6 +21,27 @@ spring:
     host: host.docker.internal
     port: 6379
 
+  kafka:
+    bootstrap-servers: localhost:9096
+    consumer:
+      group-id: user-service-group
+      auto-offset-reset: earliest
+      enable-auto-commit: false  # ✅ Better control over message processing
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        max.poll.records: 10  # ✅ Controls batch size for consumers
+        isolation.level: read_committed  # ✅ Ensures transactional reads
+    producer:
+      acks: all
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      retries: 3  # ✅ Retries failed message sending
+      properties:
+        linger.ms: 1  # ✅ Sends messages with slight delay to batch them
+        request.timeout.ms: 15000  # ✅ Ensures request doesn't hang
+        delivery.timeout.ms: 30000  # ✅ Defines max time to attempt delivery
+
 management:
   endpoints:
     web:
