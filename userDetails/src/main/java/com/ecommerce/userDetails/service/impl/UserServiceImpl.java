@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.TimeUnit;
 
 @Service
-@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -28,11 +27,16 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    private RedisTemplate<String, UserEntity> redisTemplate;
+
+    private final RedisTemplate<String, UserEntity> redisTemplate;
 
     @Autowired
     private KafkaProducerService kafkaProducerService;
 
+    @Autowired
+    public UserServiceImpl(RedisTemplate<String, UserEntity> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
 
     @Override
     @Transactional
@@ -68,14 +72,12 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = userRepository.findById(userId).
                 orElseThrow(() -> new ResourceNotFoundException("User not Found" + userId));
 
-        operations.set(redisKey, userEntity, 15, TimeUnit.SECONDS);
+        operations.set(redisKey, userEntity, 30, TimeUnit.SECONDS);
         System.out.println("🔄 Stored in Redis Cache: USER_" + userId);
-
 
         String kafkaMessage = "User Retrieved: " + userEntity.getUserName();
         kafkaProducerService.sendMessage("user-events", kafkaMessage);
         System.out.println("✅ Kafka Event Sent: " + kafkaMessage);
-
 
         return UserMapper.mapToUserDto(userEntity);
     }
