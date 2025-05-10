@@ -2,9 +2,9 @@ server:
   port: 9091
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/my_database
-    username: admin
-    password: secret
+    url: jdbc:postgresql://localhost:5432/user_services
+    username: javaguide
+    password: javaguidepwd
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -15,3 +15,7 @@ spring:
     properties:
       hibernate:
         format_sql: true  # Keep only one hibernate section
+
+  redis:
+    host: host.docker.internal
+    port: 6379

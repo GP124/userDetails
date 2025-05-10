@@ -1,4 +1,4 @@
 package com.ecommerce.userDetails.dto;
 
-public class UserDto {
+public record UserDto(Long userId, String userName, String email) {
 }
